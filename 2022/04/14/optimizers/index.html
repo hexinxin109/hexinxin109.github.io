@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Optimizers | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Algorithms &amp; Usages in torch1.SGD(stochastic gradient decent)1$ torch.optim.SGD(params, lr&#x3D;&lt;required parameter&gt;, momentum&#x3D;0, dampening&#x3D;0, weight_decay&#x3D;0, nesterov&#x3D;False, *, maximize&#x3D;False)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimizers">
+<meta property="og:url" content="http://example.com/2022/04/14/optimizers/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Algorithms &amp; Usages in torch1.SGD(stochastic gradient decent)1$ torch.optim.SGD(params, lr&#x3D;&lt;required parameter&gt;, momentum&#x3D;0, dampening&#x3D;0, weight_decay&#x3D;0, nesterov&#x3D;False, *, maximize&#x3D;False)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-14T08:39:00.118Z">
+<meta property="article:modified_time" content="2022-04-15T02:38:46.493Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-optimizers" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/14/optimizers/" class="article-date">
+  <time class="dt-published" datetime="2022-04-14T08:39:00.118Z" itemprop="datePublished">2022-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Optimizers
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Algorithms-amp-Usages-in-torch"><a href="#Algorithms-amp-Usages-in-torch" class="headerlink" title="Algorithms &amp; Usages in torch"></a>Algorithms &amp; Usages in torch</h3><h4 id="1-SGD-stochastic-gradient-decent"><a href="#1-SGD-stochastic-gradient-decent" class="headerlink" title="1.SGD(stochastic gradient decent)"></a>1.SGD(stochastic gradient decent)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.SGD(params, lr=&lt;required parameter&gt;, momentum=0, dampening=0, weight_decay=0, nesterov=False, *, maximize=False)</span><br></pre></td></tr></table></figure>
+
+<p><strong>More info:</strong> 单次随机选择一个样本来更新模型参数，由于每次更新并未考虑全部样本，因此训练速度快但并不能保证每次迭代都朝着最优解逼近，存在震荡问题。缺点：“之”字型，震荡、迂回前进；容易陷入局部极小值和鞍点。<br>momentum：引入一阶动量来增加惯性。当前的下降方向取决于历史累积的梯度方向，并略微偏向当前的下降方向，经验值0.9。<br><strong>Related work:</strong><br>1.BGD(batch gradient decent):单次更新使用全部的样本，因此训练速度慢，但单次更新准确率高<br>2.MBGD(mini-batch gradient decent)：单次更新使用部分样本，训练速度较快，单次更新准确率较高。</p>
+<h4 id="2-ASGD-Averaged-stochastic-gradient-decent"><a href="#2-ASGD-Averaged-stochastic-gradient-decent" class="headerlink" title="2.ASGD(Averaged stochastic gradient decent)"></a>2.ASGD(Averaged stochastic gradient decent)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.ASGD(params, lr=0.01, lambd=0.0001, alpha=0.75, t0=1000000.0, weight_decay=0)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Adagrad-Adaptive-Gradient-Algorithm"><a href="#3-Adagrad-Adaptive-Gradient-Algorithm" class="headerlink" title="3.Adagrad(Adaptive Gradient Algorithm)"></a>3.Adagrad(Adaptive Gradient Algorithm)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.Adagrad(params, lr=0.01, lr_decay=0, weight_decay=0, initial_accumulator_value=0, eps=1e-10)</span><br></pre></td></tr></table></figure>
+
+<p><strong>More info:</strong> 全局学习率除以历史梯度平方和的平方根，认为为不同的参数梯度设置不同的学习率可以高效地进行参数更新。在梯度大的参数方向减缓学习速率，在梯度小的学习方向加快学习速率。缺点：依赖于人工设置的全局学习率，并且学习率越来越小并趋于0。</p>
+<h4 id="4-Adadelta"><a href="#4-Adadelta" class="headerlink" title="4.Adadelta"></a>4.Adadelta</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.Adadelta(params, lr=1.0, rho=0.9, eps=1e-06, weight_decay=0)</span><br></pre></td></tr></table></figure>
+
+<p><strong>More info:</strong> 用一阶的方法近似模拟二阶牛顿法，属于adagrad算法的改进。解决了AdaGrad学习率不断降低的问题，且动态确定学习率，即不需要提前设置学习率。其中的模拟主要体现在学习率上乘以一个参数差值平方的指数衰减移动均方根RMS。</p>
+<h4 id="5-Adam-Adaptive-Moment-Estimation"><a href="#5-Adam-Adaptive-Moment-Estimation" class="headerlink" title="5.Adam(Adaptive Moment Estimation)"></a>5.Adam(Adaptive Moment Estimation)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.Adam(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False, *, maximize=False)</span><br></pre></td></tr></table></figure>
+
+<p><strong>More info:</strong> 对梯度的一阶矩估计（梯度的均值）和二阶矩估计（梯度的未中心化的方差）综合考虑来更新步长。是可以替代传统SGD过程的一阶优化算法，最最常用的优化方法.<br><strong>Related work：</strong><br>AdamW：简单理解就是通过将权重衰减和梯度更新解耦来提升Adam的泛化性能。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.AdamW(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0.01, amsgrad=False, *, maximize=False)</span><br></pre></td></tr></table></figure>
+
+<p>SparseAdam：主要针对稀疏张量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.SparseAdam(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08)</span><br></pre></td></tr></table></figure>
+
+<p>Adamax：带学习率上限的Adam</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.Adamax(params, lr=0.002, betas=(0.9, 0.999), eps=1e-08, weight_decay=0)</span><br></pre></td></tr></table></figure>
+
+<p>NAdam：带Nesterov动量的Adam</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.NAdam(params, lr=0.002, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, momentum_decay=0.004)</span><br></pre></td></tr></table></figure>
+
+<p>RAdam(Rectified Adam)：根据方差分散度来动态打开或者关闭自适应学习率，并提出一种不需要可调参数学习率预热的方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.RAdam(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0)</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-Rprop"><a href="#6-Rprop" class="headerlink" title="6.Rprop"></a>6.Rprop</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.Rprop(params, lr=0.01, etas=(0.5, 1.2), step_sizes=(1e-06, 50))</span><br></pre></td></tr></table></figure>
+
+<p><strong>More info:</strong> 根据参数梯度的符号动态地调节学习步长（不变加速、变化减速），适用于全部样本，不适用于局部小批量样本。</p>
+<h4 id="7-RMSprop-Root-Mean-Square-prop"><a href="#7-RMSprop-Root-Mean-Square-prop" class="headerlink" title="7.RMSprop(Root Mean Square prop)"></a>7.RMSprop(Root Mean Square prop)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.optim.RMSprop(params, lr=0.01, alpha=0.99, eps=1e-08, weight_decay=0, momentum=0, centered=False)</span><br></pre></td></tr></table></figure>
+
+<p><strong>More info:</strong> 学习步长并不由当前梯度符号孤立更新，而是需要考虑之前地每一次梯度变化情况，可以保证梯度更新更加缓和，适合全数据集。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/14/optimizers/" data-id="cl1yr8j1f000060u4hjkr3w9f" data-title="Optimizers" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/14/optimizers/">Optimizers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
