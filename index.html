@@ -71,6 +71,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-transform" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/18/transform/" class="article-date">
+  <time class="dt-published" datetime="2022-04-18T15:41:29.738Z" itemprop="datePublished">2022-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/04/18/transform/">Wavelet &amp; Fourier Transfrom</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="小波变换"><a href="#小波变换" class="headerlink" title="小波变换"></a>小波变换</h3><p>图像压缩，压缩图像的基本概念为将图像存成矩阵，矩阵中存储的是对应图像的某画素值，进一步进行对应的变换。以哈尔小波变换为例，原本矩阵中变换量不大的元素变换后会趋向于零。</p>
+<h5 id="哈尔小波"><a href="#哈尔小波" class="headerlink" title="哈尔小波"></a>哈尔小波</h5><p>最早提出的小波变换，是多贝西小波于N=2的特例D2，主要是利用哈尔函数来对信号进行调变，具有正交性。不适合用于较为平滑的函数。正交性主要体现在哈尔的变换矩阵任取两行进行内积运算，所得内积皆为零。假设所要分析的信号可以使用多个频率和位移不同的哈尔函数来组合而成，进行哈尔转换后就能求出信号在不同频率下所占的比例。</p>
+<h5 id="多贝西小波"><a href="#多贝西小波" class="headerlink" title="多贝西小波"></a>多贝西小波</h5><p>主要应用在离散型的小波变换，通常使用在数位信号分析、信号压缩和噪声去除；</p>
+<h3 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h3><p>通过观察图像的频率分布并进一步对图像频率进行压缩，以达到图像增强、图像去噪、边缘检测、特征提取、压缩加密等目的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.fft.fft(input, n=None, dim=- 1, norm=None, *, out=None) → Tensor</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.fft.ifft(input, n=None, dim=- 1, norm=None, *, out=None) → Tensor</span><br></pre></td></tr></table></figure>
+<h5 id="低通滤波"><a href="#低通滤波" class="headerlink" title="低通滤波"></a>低通滤波</h5><p>使用低频的滤波器来衰减低频并通过高频，常用于去噪和模糊化处理。</p>
+<h5 id="高通滤波"><a href="#高通滤波" class="headerlink" title="高通滤波"></a>高通滤波</h5><p>使用高频的滤波器来衰减低频并通过高频，常用于增强尖锐的细节，但会导致图像的对比度降低。图像对比度指的是一副图像灰度反差的大小，差异越大表示对比越大，即阴暗区域最亮的白和最暗的黑之间不同亮度层级的测量。一般对比率在120:1时就能显示生动丰富的色彩，在300:1的时候便可支持各阶的颜色。</p>
+<h5 id="带通滤波"><a href="#带通滤波" class="headerlink" title="带通滤波"></a>带通滤波</h5><p>允许带内频率对应像素的灰度值通过并阻止带外的像素。<br><strong>图像压缩</strong> 压缩图像的基本概念为将图像存成矩阵，矩阵中存储的是对应图像的某画素值，进一步进行对应的变换。以哈尔小波变换为例，原本矩阵中变换量不大的元素变换后会趋向于零。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/18/transform/" data-id="cl24vyho200009ku400fef3wr" data-title="Wavelet &amp; Fourier Transfrom" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-optimizers" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/04/14/optimizers/" class="article-date">
@@ -172,6 +219,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/04/18/transform/">Wavelet &amp; Fourier Transfrom</a>
+          </li>
         
           <li>
             <a href="/2022/04/14/optimizers/">Optimizers</a>
