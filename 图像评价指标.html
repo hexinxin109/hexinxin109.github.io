@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="title:图像评价指标图像质量客观评价一般可分为全参考(FR)，部分参考(RR)和无参考(NR)三种类型。其中，全参考是比较待评价图像与理想图像之间的差异，分析前者的失真程度，从而得到对应的质量评估。主要以像素统计(PSNR,MSE)、信息论和结构(SSIM)为基础；部分参考是针对理想图像中的部分信息进行参考，可以理解为先提取理想图像和待评价图像的特征信息，再在特征信息上进行质量评估。对于整体">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/%E5%9B%BE%E5%83%8F%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title:图像评价指标图像质量客观评价一般可分为全参考(FR)，部分参考(RR)和无参考(NR)三种类型。其中，全参考是比较待评价图像与理想图像之间的差异，分析前者的失真程度，从而得到对应的质量评估。主要以像素统计(PSNR,MSE)、信息论和结构(SSIM)为基础；部分参考是针对理想图像中的部分信息进行参考，可以理解为先提取理想图像和待评价图像的特征信息，再在特征信息上进行质量评估。对于整体">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-29T16:18:59.780Z">
+<meta property="article:modified_time" content="2022-04-29T16:18:59.780Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/%E5%9B%BE%E5%83%8F%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87.html" class="article-date">
+  <time class="dt-published" datetime="2022-04-29T16:18:59.780Z" itemprop="datePublished">2022-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="title-图像评价指标"><a href="#title-图像评价指标" class="headerlink" title="title:图像评价指标"></a>title:图像评价指标</h2><p>图像质量客观评价一般可分为全参考(FR)，部分参考(RR)和无参考(NR)三种类型。其中，<strong>全参考</strong>是比较待评价图像与理想图像之间的差异，分析前者的失真程度，从而得到对应的质量评估。主要以像素统计(PSNR,MSE)、信息论和结构(SSIM)为基础；<strong>部分参考</strong>是针对理想图像中的部分信息进行参考，可以理解为先提取理想图像和待评价图像的特征信息，再在特征信息上进行质量评估。对于整体相比而言，数据量下降很多，集中应用在图像传输系统中；<strong>无参考</strong>也被称为首评价方法，主要针对理想图像很难获得的情况，因此一般是基于图像的统计特性(均值，标准差)。主要思路为先对理想图像的特征进行假设，再建立相应的数学分析模型，最后通过计算待评价图像对应的模型特征来得到质量评价结果。</p>
+<h5 id="图像灰度级数"><a href="#图像灰度级数" class="headerlink" title="图像灰度级数"></a>图像灰度级数</h5><h5 id="MSE"><a href="#MSE" class="headerlink" title="MSE"></a>MSE</h5><h5 id="MAE"><a href="#MAE" class="headerlink" title="MAE"></a>MAE</h5><h5 id="PSNR-峰值信噪比"><a href="#PSNR-峰值信噪比" class="headerlink" title="PSNR(峰值信噪比)"></a>PSNR(峰值信噪比)</h5><p>衡量图像失真或是噪声水平的客观标准，一般PSNR值越大越相似，普遍基准为30dB，即认为30dB以下的图像劣化较为明显。</p>
+<h5 id="SSIM-结构相似"><a href="#SSIM-结构相似" class="headerlink" title="SSIM(结构相似)"></a>SSIM(结构相似)</h5><p>自然图像存在极高的结构性，可以理解为图像像素之间的强相关性。这些像素之间的相关性在视觉场景中一般携带着关于物体结构的重要信息。因此可以通过探测结构信息之间是否改变来感知图像失真的近似信息。<br>SSIM主要包含三种对比模块：亮度、对比度、结构。亮度是关于平均灰度(像素均值）的函数；对比度是关于扣除平均灰度(像素标准差)的函数；结构对比度是关于扣除平均灰度并除以标准差的函数。考虑到人类的视觉感知，一般会比L1、L2的结果更有细节。</p>
+<h5 id="MS-SSIM-多尺度结构相似"><a href="#MS-SSIM-多尺度结构相似" class="headerlink" title="MS-SSIM(多尺度结构相似)"></a>MS-SSIM(多尺度结构相似)</h5><p>基于多层的SSIM损失函数，即图片按照一定规则，由小到大缩放。一般容易导致亮度的改变和颜色的偏差，但是可以保留高频信息，即图像的边缘和细节。</p>
+<h5 id="图像感知相似度LPIPS"><a href="#图像感知相似度LPIPS" class="headerlink" title="图像感知相似度LPIPS"></a>图像感知相似度LPIPS</h5><p>值越高表示与原图有更多不同，越低意味着与原图更相似。</p>
+<h5 id="GAN-评价指标IS"><a href="#GAN-评价指标IS" class="headerlink" title="GAN-评价指标IS"></a>GAN-评价指标IS</h5><p>判断数据真实性的依据来源于Inception v3的–ImageNet，即凡是不类似于ImageNet的数据都是不真实的数据，因此IS无法反映真实数据与样本之间的距离。</p>
+<h5 id="GAN-评价指标FID"><a href="#GAN-评价指标FID" class="headerlink" title="GAN-评价指标FID"></a>GAN-评价指标FID</h5><p>计算真实图像与生成图像的特征之间距离的一种度量。首先利用Inception网络来提取特征，进一步使用高斯模型对特征空间进行建模，最后计算特征之间的距离。数值越小表示生成的图片越多样、质量越好。TensorFlow的函数建议使用最小为10000的样本量来计算FID、否则会低估生成器的真实FID。局限就是基于特征提取，因此依赖于某些特征的出现与不出现，无法描述特征之间的空间关系。</p>
+<h5 id="GAN-评价指标KID"><a href="#GAN-评价指标KID" class="headerlink" title="GAN-评价指标KID"></a>GAN-评价指标KID</h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/%E5%9B%BE%E5%83%8F%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87.html" data-id="cl2knbh5t0008k4u4h9e85bbn" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/29/git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/20/network/">Networks</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/18/transform/">Wavelet &amp; Fourier Transfrom</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/14/optimizers/">Optimizers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

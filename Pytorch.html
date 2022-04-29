@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="title:Pytorch网络组件 VariableVariable指的是变量，即存放的是会变化值的地理位置，区别于int变量，因此符合反向传播中参数更新的属性。pytorch都是由tensor计算的，而tensor的参数都是variable的形式。如果是用Variable计算的话，返回的也是一个同类型的Variable。12$ tensor &#x3D; torch.FloatTensor(A)$ va">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/Pytorch.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title:Pytorch网络组件 VariableVariable指的是变量，即存放的是会变化值的地理位置，区别于int变量，因此符合反向传播中参数更新的属性。pytorch都是由tensor计算的，而tensor的参数都是variable的形式。如果是用Variable计算的话，返回的也是一个同类型的Variable。12$ tensor &#x3D; torch.FloatTensor(A)$ va">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-24T09:15:55.204Z">
+<meta property="article:modified_time" content="2022-04-24T09:15:55.204Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Pytorch.html" class="article-date">
+  <time class="dt-published" datetime="2022-04-24T09:15:55.204Z" itemprop="datePublished">2022-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="title-Pytorch"><a href="#title-Pytorch" class="headerlink" title="title:Pytorch"></a>title:Pytorch</h2><h5 id="网络组件"><a href="#网络组件" class="headerlink" title="网络组件"></a>网络组件</h5><ol>
+<li>Variable<br>Variable指的是变量，即存放的是会变化值的地理位置，区别于int变量，因此符合反向传播中参数更新的属性。pytorch都是由tensor计算的，而tensor的参数都是variable的形式。如果是用Variable计算的话，返回的也是一个同类型的Variable。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tensor = torch.FloatTensor(A)</span><br><span class="line">$ variable = Variable(tnesor, requires_grad=True)</span><br></pre></td></tr></table></figure></li>
+<li>Variable求梯度<br>Variable计算过程中会逐步形成计算图，这个图将所有的计算节点都连接起来，最后进行误差反向传播的时候，一次性将所有Variable里面的梯度都计算出来。默认不需要求导，即requires_grad默认为False。如果某一个节点的requires_grad为True，所有依赖于它的节点的requies_grad都是True。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ print(variable) # Variable形式</span><br><span class="line">$ print(variable.data) # 将Variable形式转tensor形式</span><br><span class="line">$ print(variable.data.numpy()) #numpy形式</span><br></pre></td></tr></table></figure></li>
+<li>volatile<br>variable的volatile属性默认为False，volatile属性为True的节点不会求导，且volatile的优先级高于requires_grad.</li>
+<li>retain_graph<br>如果设置为false，计算图中的中间变量在计算完后会被释放，默认是false来提高效率；设置为True后，中间节点值不会被释放，以满足再次计算。</li>
+<li>backward()</li>
+<li>clamp<br>将一个值限制在一个上限和一个下限之间，当这个值超过最小值和最大值的范围时，在最小值和最大值之间选择一个值使用。</li>
+<li>arange &amp; view<br>view用于改变tensor的形状，返回具有相同数据但是大小不同的新张量；arange根据指定的起始值、终点值和间隔返回一维的张量；<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.arange(start=0, end, step=1, out=None).view(1,1,2,2)</span><br></pre></td></tr></table></figure></li>
+<li>手写基础案例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ 搭建一个基础的神经网络</span><br></pre></td></tr></table></figure>
+<h6 id="tensor-上下采样"><a href="#tensor-上下采样" class="headerlink" title="tensor 上下采样"></a>tensor 上下采样</h6></li>
+</ol>
+<p><strong>1. 上采样：</strong> 任何可以让图像变成更高分辨率的技术，最简单的是重采样和插值；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.nn.functional.interpolate(input, size=None,scale_factor=None, mode=&#x27;nearest&#x27;, align_corners=None, recompute_scale_factor=None, antialias=False)</span><br></pre></td></tr></table></figure>
+<p><strong>3. view：</strong> </p>
+<h6 id="赋值-amp-拷贝"><a href="#赋值-amp-拷贝" class="headerlink" title="赋值 &amp; 拷贝"></a>赋值 &amp; 拷贝</h6><p><strong>1. 赋值：</strong> 直接赋值操作，即给变量取一个别名<br><strong>2. 浅拷贝：</strong> 拷贝最外层的数值和指针，不拷贝更深层次的对象，即只拷贝了父对象；共享data的内存地址，数据会同步变化。可以理解成创建新的对象，其内容是原对象的引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ b = torch.from_numpy(a) # Numpy-&gt;Tensor</span><br><span class="line">$ copy.copy()</span><br><span class="line">$ param = model.state_dict() # 当修改param的时候，相应地也会修改model的参数 </span><br></pre></td></tr></table></figure>
+<p><strong>3. 深拷贝：</strong> 拷贝了数值、指针和指针指向的深层次内存空间，拷贝了父对象及其子对象。可以理解成深拷贝出来的对象是一个全新的对象，不再与原来的对象有任何的关联。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ torch.clone() # 新的tensor会保留在计算图中，参与梯度计算；函数返回的是完全相同的tensor，新的tensor开辟新的内存，但是依旧留在计算图中；这个操作在不共享数据内存的同时支持梯度传递与叠加，所以常用在神经网络中某个的单元需要重复使用的场景下。</span><br><span class="line">$ torch.Tensor()</span><br><span class="line">$ torch.tensor()</span><br><span class="line">$ model.load_state_dict()</span><br><span class="line">$ copy.deepcopy()</span><br></pre></td></tr></table></figure>
+<p><strong>clone &amp; detach:</strong> clone后的值不会随着前面的值的变化而变化，新的tensor充当中间变量（不保留自身梯度），会保留在计算图中参与梯度回传叠加；但是detach会随着之前出现的值的变化而变化，新的tensor会脱离计算图，但并不涉及梯度计算；<br><strong>判断是否共享内存：</strong> 可以通过简单的赋值后观察数据变化来判断，直接打印id不一定准确，比如detach即底层共享数据内存但依旧是新的tensor（？）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/Pytorch.html" data-id="cl2knbh5p0004k4u47hf565mk" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/29/git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/20/network/">Networks</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/18/transform/">Wavelet &amp; Fourier Transfrom</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/14/optimizers/">Optimizers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

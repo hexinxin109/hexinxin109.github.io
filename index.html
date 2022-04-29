@@ -71,6 +71,107 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-git" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/29/git/" class="article-date">
+  <time class="dt-published" datetime="2022-04-29T11:23:53.798Z" itemprop="datePublished">2022-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/04/29/git/">Git</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h5 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h5><p>开源的分布式版本管理系统。Git版本库是Git管理文件的仓库-目录。<br>1.创建版本库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init <span class="comment">#将当前目录变成Git可以管理的目录(版本库)，并自动创建一个master分支。</span></span><br></pre></td></tr></table></figure>
+
+<p>执行完后会生成一个名为.git的文件夹，用来跟踪并管理版本。<br>2.将文件添加到版本库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vi/vim <span class="comment">#新建文件，默认是命令模式，编辑模式按下esc可以回退到命令模式</span></span><br><span class="line">$ git add x/xx <span class="comment">#将文件、文件夹下的所有文件添加到暂存区</span></span><br><span class="line">$ git commit -m <span class="string">&quot;hahahha&quot;</span> <span class="comment">#将暂存区的文件提交到仓库并提交备注信息</span></span><br><span class="line">$ git status <span class="comment">#查看状态，判断文件是在暂存区还是仓库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>分支管理：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git branch <span class="comment">#列出本地分支</span></span><br><span class="line">$ git branch A <span class="comment">#手动创建一个分支A</span></span><br><span class="line">$ git checkout A <span class="comment">#切换到分支A</span></span><br><span class="line">$ git chechout -b A <span class="comment">#创建新分支A并切换到该分支</span></span><br><span class="line">$ git branch -d A <span class="comment">#删除分支A</span></span><br><span class="line">$ git merge A <span class="comment">#将分支A合并到当前分支</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h5><p>面向开源及私有软件项目的托管平台，只支持git作为唯一的版本库格式进行托管。<br><strong>gitlink 确实开源：</strong> 中国计算机学会CCF官方指定的开源创新服务平台</p>
+<!--
+##### Macos windows linux平台
+>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/29/git/" data-id="cl2knbh5k0003k4u44yw6boro" data-title="Git" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-network" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/20/network/" class="article-date">
+  <time class="dt-published" datetime="2022-04-20T13:44:46.006Z" itemprop="datePublished">2022-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/04/20/network/">Networks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)</span><br></pre></td></tr></table></figure>
+<p>从数据和特征空间的角度来看，卷积层、池化层和激活函数层是将原始数据映射到隐层特征空间，而全连接层则是起到将学习到的“分布式特征表示”映射到样本标记空间的作用。这段话可以理解成将特征表示整合到一起，输出为一个值，这样做的好处是大大减少特征位置对分类带来的影响。<br><strong>多层全连接层</strong><br>对比泰勒公式，可以理解成用多项式函数去拟合光滑函数。<br><strong>全连接层的好处</strong><br>研究发现，全连接层可以在模型能力表示的迁移过程中充当“防火墙”的作用。当源域和目标域差异较大时，全连接层可以保持较大的模型能力来确保更强的表示能力的迁移。（冗余的参数并不一无是处）</p>
+<!--#### 卷积层-->
+<h4 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.nn.AvgPool2d(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)</span><br></pre></td></tr></table></figure>
+<p>降低特征图维度的同时保持大部分重要信息。池化层用于压缩数据和参数的量，减少过拟合。</p>
+<h4 id="baseline-backbone-benchmark"><a href="#baseline-backbone-benchmark" class="headerlink" title="baseline backbone benchmark"></a>baseline backbone benchmark</h4><p>1.baseline:在比较算法好坏中作为“参照物”而存在的，在比较中作为基线。目的是比较提出的算法的性能或者优势。（模型至少应该达到的效果）<br>2.backbone:一般指基干网络，比如vggnet,resnet,inception,gan<br>3.benchmark:一般指具体实验的载体、性能指标，比如准确度、内存消耗、模型复杂度等。</p>
+<!--
+
+#### 图像合成 & 纹理合成 经典数据集
+
+#### 图像合成 & 纹理合成 评价指标
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/20/network/" data-id="cl2knbh5w000bk4u40sn3arn4" data-title="Networks" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-transform" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/04/18/transform/" class="article-date">
@@ -219,6 +320,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/04/29/git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/20/network/">Networks</a>
+          </li>
         
           <li>
             <a href="/2022/04/18/transform/">Wavelet &amp; Fourier Transfrom</a>

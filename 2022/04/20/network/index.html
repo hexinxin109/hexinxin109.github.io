@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Networks | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="全连接层1$ torch.nn.Linear(in_features, out_features, bias&#x3D;True, device&#x3D;None, dtype&#x3D;None) 从数据和特征空间的角度来看，卷积层、池化层和激活函数层是将原始数据映射到隐层特征空间，而全连接层则是起到将学习到的“分布式特征表示”映射到样本标记空间的作用。这段话可以理解成将特征表示整合到一起，输出为一个值，这样做的好处是大大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Networks">
+<meta property="og:url" content="http://example.com/2022/04/20/network/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="全连接层1$ torch.nn.Linear(in_features, out_features, bias&#x3D;True, device&#x3D;None, dtype&#x3D;None) 从数据和特征空间的角度来看，卷积层、池化层和激活函数层是将原始数据映射到隐层特征空间，而全连接层则是起到将学习到的“分布式特征表示”映射到样本标记空间的作用。这段话可以理解成将特征表示整合到一起，输出为一个值，这样做的好处是大大">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-20T13:44:46.006Z">
+<meta property="article:modified_time" content="2022-04-29T16:26:05.530Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-network" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/20/network/" class="article-date">
+  <time class="dt-published" datetime="2022-04-20T13:44:46.006Z" itemprop="datePublished">2022-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Networks
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)</span><br></pre></td></tr></table></figure>
+<p>从数据和特征空间的角度来看，卷积层、池化层和激活函数层是将原始数据映射到隐层特征空间，而全连接层则是起到将学习到的“分布式特征表示”映射到样本标记空间的作用。这段话可以理解成将特征表示整合到一起，输出为一个值，这样做的好处是大大减少特征位置对分类带来的影响。<br><strong>多层全连接层</strong><br>对比泰勒公式，可以理解成用多项式函数去拟合光滑函数。<br><strong>全连接层的好处</strong><br>研究发现，全连接层可以在模型能力表示的迁移过程中充当“防火墙”的作用。当源域和目标域差异较大时，全连接层可以保持较大的模型能力来确保更强的表示能力的迁移。（冗余的参数并不一无是处）</p>
+<!--#### 卷积层-->
+<h4 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.nn.AvgPool2d(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ torch.nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)</span><br></pre></td></tr></table></figure>
+<p>降低特征图维度的同时保持大部分重要信息。池化层用于压缩数据和参数的量，减少过拟合。</p>
+<h4 id="baseline-backbone-benchmark"><a href="#baseline-backbone-benchmark" class="headerlink" title="baseline backbone benchmark"></a>baseline backbone benchmark</h4><p>1.baseline:在比较算法好坏中作为“参照物”而存在的，在比较中作为基线。目的是比较提出的算法的性能或者优势。（模型至少应该达到的效果）<br>2.backbone:一般指基干网络，比如vggnet,resnet,inception,gan<br>3.benchmark:一般指具体实验的载体、性能指标，比如准确度、内存消耗、模型复杂度等。</p>
+<!--
+
+#### 图像合成 & 纹理合成 经典数据集
+
+#### 图像合成 & 纹理合成 评价指标
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/20/network/" data-id="cl2knbh5w000bk4u40sn3arn4" data-title="Networks" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/29/git/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Git
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/18/transform/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Wavelet &amp; Fourier Transfrom</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/29/git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/20/network/">Networks</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/18/transform/">Wavelet &amp; Fourier Transfrom</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/14/optimizers/">Optimizers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
