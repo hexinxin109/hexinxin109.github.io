@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Linux设备空间Linux设备空间由两个条件决定：硬盘容量和索引节点。当其中一项超额就会造成设备上没有空间的异常错误。硬盘容量： 硬盘的可用容量索引节点(Inode)： 记录文件的大小、拥有者、权限等信息。每个分区都会有固定大小的Inode容量，每个Inode节点也会占用硬盘空间，一般是128bits或256bits。Inode节点的数量在格式化时给定，一般每1KB或每2KB就设置一个Inode">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-04-25T06:36:35.583Z">
-<meta property="article:modified_time" content="2022-04-25T06:36:35.583Z">
+<meta property="article:published_time" content="2022-04-29T16:29:11.020Z">
+<meta property="article:modified_time" content="2022-04-29T16:29:11.020Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -76,7 +76,7 @@
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/Linux.html" class="article-date">
-  <time class="dt-published" datetime="2022-04-25T06:36:35.583Z" itemprop="datePublished">2022-04-25</time>
+  <time class="dt-published" datetime="2022-04-29T16:29:11.020Z" itemprop="datePublished">2022-04-30</time>
 </a>
     
   </div>
@@ -88,7 +88,7 @@
         <h5 id="Linux设备空间"><a href="#Linux设备空间" class="headerlink" title="Linux设备空间"></a>Linux设备空间</h5><p>Linux设备空间由两个条件决定：硬盘容量和索引节点。当其中一项超额就会造成设备上没有空间的异常错误。<br><strong>硬盘容量：</strong> 硬盘的可用容量<br><strong>索引节点(Inode)：</strong> 记录文件的大小、拥有者、权限等信息。每个分区都会有固定大小的Inode容量，每个Inode节点也会占用硬盘空间，一般是128bits或256bits。Inode节点的数量在格式化时给定，一般每1KB或每2KB就设置一个Inode.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ df -i #查看各分区的Inode情况</span><br><span class="line">$ df -h #有占用率达100%就断定该分区满（判断硬盘满）</span><br><span class="line">$ df -ia #有占用率100%就断定该分区碎片文件多（判断Inode满）</span><br></pre></td></tr></table></figure>
 <p>硬盘满一般删除不要的临时文件、日志文件；Inode满一般是垃圾小文件多造成的。</p>
-
+<h5 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span> <span class="comment">#打印工作目录</span></span><br><span class="line">$ ls <span class="comment">#参考目录下的文件，不包含隐藏文件</span></span><br><span class="line">$ ls -ah <span class="comment">#查看目录下的文件，包含隐藏文件</span></span><br><span class="line">$ vi/vim <span class="comment">#新建并进入到编辑模式，默认是命令模式，编辑模式按下esc可以回退到命令模式</span></span><br><span class="line">$ zz/:wq <span class="comment">#保存修改并退出vi</span></span><br><span class="line">$ :q! <span class="comment">#放弃修改并退出vi</span></span><br><span class="line">$ :e! <span class="comment">#放弃修改并不退出vi，即回退到文件最后一次保存操作的状态</span></span><br><span class="line">$ touch <span class="comment">#创建新文件或修改源文件的时间属性为当前时间</span></span><br><span class="line">$ cat <span class="comment">#连接文件并打印到标准输出设备上</span></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -131,6 +131,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/04/30/activation/">Activation Funtion</a>
+          </li>
         
           <li>
             <a href="/2022/04/29/git/">Git</a>

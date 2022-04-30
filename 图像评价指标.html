@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="title:图像评价指标图像质量客观评价一般可分为全参考(FR)，部分参考(RR)和无参考(NR)三种类型。其中，全参考是比较待评价图像与理想图像之间的差异，分析前者的失真程度，从而得到对应的质量评估。主要以像素统计(PSNR,MSE)、信息论和结构(SSIM)为基础；部分参考是针对理想图像中的部分信息进行参考，可以理解为先提取理想图像和待评价图像的特征信息，再在特征信息上进行质量评估。对于整体">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-04-29T16:18:59.780Z">
-<meta property="article:modified_time" content="2022-04-29T16:18:59.780Z">
+<meta property="article:published_time" content="2022-04-30T10:49:37.818Z">
+<meta property="article:modified_time" content="2022-04-30T10:49:37.818Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -76,7 +76,7 @@
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/%E5%9B%BE%E5%83%8F%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87.html" class="article-date">
-  <time class="dt-published" datetime="2022-04-29T16:18:59.780Z" itemprop="datePublished">2022-04-30</time>
+  <time class="dt-published" datetime="2022-04-30T10:49:37.818Z" itemprop="datePublished">2022-04-30</time>
 </a>
     
   </div>
@@ -93,7 +93,8 @@
 <h5 id="图像感知相似度LPIPS"><a href="#图像感知相似度LPIPS" class="headerlink" title="图像感知相似度LPIPS"></a>图像感知相似度LPIPS</h5><p>值越高表示与原图有更多不同，越低意味着与原图更相似。</p>
 <h5 id="GAN-评价指标IS"><a href="#GAN-评价指标IS" class="headerlink" title="GAN-评价指标IS"></a>GAN-评价指标IS</h5><p>判断数据真实性的依据来源于Inception v3的–ImageNet，即凡是不类似于ImageNet的数据都是不真实的数据，因此IS无法反映真实数据与样本之间的距离。</p>
 <h5 id="GAN-评价指标FID"><a href="#GAN-评价指标FID" class="headerlink" title="GAN-评价指标FID"></a>GAN-评价指标FID</h5><p>计算真实图像与生成图像的特征之间距离的一种度量。首先利用Inception网络来提取特征，进一步使用高斯模型对特征空间进行建模，最后计算特征之间的距离。数值越小表示生成的图片越多样、质量越好。TensorFlow的函数建议使用最小为10000的样本量来计算FID、否则会低估生成器的真实FID。局限就是基于特征提取，因此依赖于某些特征的出现与不出现，无法描述特征之间的空间关系。</p>
-<h5 id="GAN-评价指标KID"><a href="#GAN-评价指标KID" class="headerlink" title="GAN-评价指标KID"></a>GAN-评价指标KID</h5>
+<h5 id="GAN-评价指标KID"><a href="#GAN-评价指标KID" class="headerlink" title="GAN-评价指标KID"></a>GAN-评价指标KID</h5><h5 id="美学评分"><a href="#美学评分" class="headerlink" title="美学评分"></a>美学评分</h5><p>让计算机对一张图片进行打分，可以是一个具体的分数、类别或者是等级。数据集来源：构建数据集并让很多人对图片进行打分，从统计的意义上看，当打分的人数足够多的时候，评分的均值就是符合大部分人的审美。</p>
+
       
     </div>
     <footer class="article-footer">
@@ -136,6 +137,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/04/30/activation/">Activation Funtion</a>
+          </li>
         
           <li>
             <a href="/2022/04/29/git/">Git</a>

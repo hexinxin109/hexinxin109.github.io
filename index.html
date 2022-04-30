@@ -71,6 +71,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-activation" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/30/activation/" class="article-date">
+  <time class="dt-published" datetime="2022-04-30T11:26:18.809Z" itemprop="datePublished">2022-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/04/30/activation/">Activation Funtion</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h5 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h5><p>负数部分设置为0，正数部分保留本身。当输入为正的时候不存在梯度饱和的问题；同时ReLU只存在线性关系，因此计算速度快。主要缺点：输入为负时完全失效，即当反向传播时输入为负会导致梯度完全为零；不是以0为中心的函数。</p>
+<h5 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h5><p>在ReLU基础上将负数输入部分赋予小的线性分量，来调整负值的零梯度问题。</p>
+<h5 id="ELU"><a href="#ELU" class="headerlink" title="ELU"></a>ELU</h5><p>在ReLU基础上将负数输入部分赋予小的指数分量，使得激活的平均值接近于零。均值接近于零可以使得学习更快，但是计算强度相对于Leaky ReLU更大。</p>
+<h5 id="PReLU"><a href="#PReLU" class="headerlink" title="PReLU"></a>PReLU</h5><p>与Leaky ReLU类似，将负数部分的小线性分量的参数变成可学习的参数。</p>
+<h5 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h5><p>输出范围是0到1的s型曲线，主要适合用于输出为预测概率的模型。主要缺点：倾向于梯度消失；输出是以0为中心的，导致权重更新的效率降低；执行的是指数运算，运行较慢。</p>
+<h5 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h5><p>输出范围是-1到1的s型曲线，输出间隔为1，整个函数以0为中心。一般的二元问题是将tanh函数用于隐藏层，将sigmoid函数用于输出层。</p>
+<h5 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h5><p>主要用于多类分类函数的激活函数。分母结合了原始输出值的所有因子，意味着获得的各种概率彼此相关。</p>
+<h5 id="收敛速度"><a href="#收敛速度" class="headerlink" title="收敛速度"></a>收敛速度</h5><p>模型的最优解指的是模型参数的最优解。通过逐轮迭代，模型参数会被更新到接近最优解。一般来说，迭代轮次越多则认为是收敛速度越慢。</p>
+<!--
+为何激活函数以零为中心的话收敛速度更快
+-->
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/30/activation/" data-id="cl2lwnvjw00007ku4d0jdeql3" data-title="Activation Funtion" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-git" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/04/29/git/" class="article-date">
@@ -320,6 +369,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/04/30/activation/">Activation Funtion</a>
+          </li>
         
           <li>
             <a href="/2022/04/29/git/">Git</a>
