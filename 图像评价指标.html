@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="title:图像评价指标图像质量客观评价一般可分为全参考(FR)，部分参考(RR)和无参考(NR)三种类型。其中，全参考是比较待评价图像与理想图像之间的差异，分析前者的失真程度，从而得到对应的质量评估。主要以像素统计(PSNR,MSE)、信息论和结构(SSIM)为基础；部分参考是针对理想图像中的部分信息进行参考，可以理解为先提取理想图像和待评价图像的特征信息，再在特征信息上进行质量评估。对于整体">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-04-30T10:49:37.818Z">
-<meta property="article:modified_time" content="2022-04-30T10:49:37.818Z">
+<meta property="article:published_time" content="2022-05-01T15:08:34.179Z">
+<meta property="article:modified_time" content="2022-05-01T15:08:34.179Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -76,7 +76,7 @@
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/%E5%9B%BE%E5%83%8F%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87.html" class="article-date">
-  <time class="dt-published" datetime="2022-04-30T10:49:37.818Z" itemprop="datePublished">2022-04-30</time>
+  <time class="dt-published" datetime="2022-05-01T15:08:34.179Z" itemprop="datePublished">2022-05-01</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
       
         <hr>
 <h2 id="title-图像评价指标"><a href="#title-图像评价指标" class="headerlink" title="title:图像评价指标"></a>title:图像评价指标</h2><p>图像质量客观评价一般可分为全参考(FR)，部分参考(RR)和无参考(NR)三种类型。其中，<strong>全参考</strong>是比较待评价图像与理想图像之间的差异，分析前者的失真程度，从而得到对应的质量评估。主要以像素统计(PSNR,MSE)、信息论和结构(SSIM)为基础；<strong>部分参考</strong>是针对理想图像中的部分信息进行参考，可以理解为先提取理想图像和待评价图像的特征信息，再在特征信息上进行质量评估。对于整体相比而言，数据量下降很多，集中应用在图像传输系统中；<strong>无参考</strong>也被称为首评价方法，主要针对理想图像很难获得的情况，因此一般是基于图像的统计特性(均值，标准差)。主要思路为先对理想图像的特征进行假设，再建立相应的数学分析模型，最后通过计算待评价图像对应的模型特征来得到质量评价结果。</p>
-<h5 id="图像灰度级数"><a href="#图像灰度级数" class="headerlink" title="图像灰度级数"></a>图像灰度级数</h5><h5 id="MSE"><a href="#MSE" class="headerlink" title="MSE"></a>MSE</h5><h5 id="MAE"><a href="#MAE" class="headerlink" title="MAE"></a>MAE</h5><h5 id="PSNR-峰值信噪比"><a href="#PSNR-峰值信噪比" class="headerlink" title="PSNR(峰值信噪比)"></a>PSNR(峰值信噪比)</h5><p>衡量图像失真或是噪声水平的客观标准，一般PSNR值越大越相似，普遍基准为30dB，即认为30dB以下的图像劣化较为明显。</p>
+<h5 id="图像灰度级数"><a href="#图像灰度级数" class="headerlink" title="图像灰度级数"></a>图像灰度级数</h5><h5 id="PSNR-峰值信噪比"><a href="#PSNR-峰值信噪比" class="headerlink" title="PSNR(峰值信噪比)"></a>PSNR(峰值信噪比)</h5><p>衡量图像失真或是噪声水平的客观标准，一般PSNR值越大越相似，普遍基准为30dB，即认为30dB以下的图像劣化较为明显。常用于图像压缩中信号重建质量的检测方法</p>
 <h5 id="SSIM-结构相似"><a href="#SSIM-结构相似" class="headerlink" title="SSIM(结构相似)"></a>SSIM(结构相似)</h5><p>自然图像存在极高的结构性，可以理解为图像像素之间的强相关性。这些像素之间的相关性在视觉场景中一般携带着关于物体结构的重要信息。因此可以通过探测结构信息之间是否改变来感知图像失真的近似信息。<br>SSIM主要包含三种对比模块：亮度、对比度、结构。亮度是关于平均灰度(像素均值）的函数；对比度是关于扣除平均灰度(像素标准差)的函数；结构对比度是关于扣除平均灰度并除以标准差的函数。考虑到人类的视觉感知，一般会比L1、L2的结果更有细节。</p>
 <h5 id="MS-SSIM-多尺度结构相似"><a href="#MS-SSIM-多尺度结构相似" class="headerlink" title="MS-SSIM(多尺度结构相似)"></a>MS-SSIM(多尺度结构相似)</h5><p>基于多层的SSIM损失函数，即图片按照一定规则，由小到大缩放。一般容易导致亮度的改变和颜色的偏差，但是可以保留高频信息，即图像的边缘和细节。</p>
 <h5 id="图像感知相似度LPIPS"><a href="#图像感知相似度LPIPS" class="headerlink" title="图像感知相似度LPIPS"></a>图像感知相似度LPIPS</h5><p>值越高表示与原图有更多不同，越低意味着与原图更相似。</p>
