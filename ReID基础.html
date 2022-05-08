@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Loss | Hexo</title>
+  <title>ReId | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="损失函数是用来评测模型的预测值和真实值的相似程度。 softmaxsoftmax是组合softmax和cross-entropy loss的损失函数。  softmax：将全连接层通过自然指数操作计算每个值占输出总和值的比例，进而将输出限制在0~1之间，实现概率分类问题。 cross-entropy：分类模型中一般利用交叉熵作为损失函数。计算方式为对预测值（经过softmax计算后的值）求对数并与">
+  <meta name="description" content="在重识别问题中，根据网络中损失函数上主要分为两类学习方法：表征学习，度量学习。其中，表征学习的方法XXXX，度量学习旨在让网络学会分析图像之间的相似度。 表征学习 分类损失 训练分类器，并在测试阶段提取出图像的内容并移开全连接层，将图像的内容和样本集中的内容用传统的距离进行衡量。 属性损失 在分类损失的基础上添加几个属性分类的损失，类似于多标签分类。  度量学习 对比损失 将图像通过孪生网络获取特">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Loss">
-<meta property="og:url" content="http://example.com/loss.html">
+<meta property="og:title" content="ReId">
+<meta property="og:url" content="http://example.com/ReID%E5%9F%BA%E7%A1%80.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="损失函数是用来评测模型的预测值和真实值的相似程度。 softmaxsoftmax是组合softmax和cross-entropy loss的损失函数。  softmax：将全连接层通过自然指数操作计算每个值占输出总和值的比例，进而将输出限制在0~1之间，实现概率分类问题。 cross-entropy：分类模型中一般利用交叉熵作为损失函数。计算方式为对预测值（经过softmax计算后的值）求对数并与">
+<meta property="og:description" content="在重识别问题中，根据网络中损失函数上主要分为两类学习方法：表征学习，度量学习。其中，表征学习的方法XXXX，度量学习旨在让网络学会分析图像之间的相似度。 表征学习 分类损失 训练分类器，并在测试阶段提取出图像的内容并移开全连接层，将图像的内容和样本集中的内容用传统的距离进行衡量。 属性损失 在分类损失的基础上添加几个属性分类的损失，类似于多标签分类。  度量学习 对比损失 将图像通过孪生网络获取特">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-01T14:56:05.743Z">
-<meta property="article:modified_time" content="2022-05-01T14:56:05.743Z">
+<meta property="article:published_time" content="2022-05-08T02:14:45.722Z">
+<meta property="article:modified_time" content="2022-05-08T02:14:45.722Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -75,8 +75,8 @@
       <div class="outer">
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/loss.html" class="article-date">
-  <time class="dt-published" datetime="2022-05-01T14:56:05.743Z" itemprop="datePublished">2022-05-01</time>
+    <a href="/ReID%E5%9F%BA%E7%A1%80.html" class="article-date">
+  <time class="dt-published" datetime="2022-05-08T02:14:45.722Z" itemprop="datePublished">2022-05-08</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Loss
+      ReId
     </h1>
   
 
@@ -95,19 +95,23 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>损失函数是用来评测模型的预测值和真实值的相似程度。</p>
-<h6 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h6><p>softmax是组合softmax和cross-entropy loss的损失函数。</p>
-<ol>
-<li>softmax：将全连接层通过自然指数操作计算每个值占输出总和值的比例，进而将输出限制在0~1之间，实现概率分类问题。</li>
-<li>cross-entropy：分类模型中一般利用交叉熵作为损失函数。计算方式为对预测值（经过softmax计算后的值）求对数并与样本真值求积。</li>
+        <p>在重识别问题中，根据网络中损失函数上主要分为两类学习方法：表征学习，度量学习。其中，表征学习的方法XXXX，度量学习旨在让网络学会分析图像之间的相似度。</p>
+<h5 id="表征学习"><a href="#表征学习" class="headerlink" title="表征学习"></a>表征学习</h5><ol>
+<li>分类损失 训练分类器，并在测试阶段提取出图像的内容并移开全连接层，将图像的内容和样本集中的内容用传统的距离进行衡量。</li>
+<li>属性损失 在分类损失的基础上添加几个属性分类的损失，类似于多标签分类。</li>
 </ol>
-<h5 id="MSE-均方误差"><a href="#MSE-均方误差" class="headerlink" title="MSE(均方误差)"></a>MSE(均方误差)</h5><p>最常见的回归损失函数，计算预测值与真实值之间距离的平方和。偏向于数值的平均数，偏向于便宜较大的异常点，因此适合异常检测的任务。优势是损失的梯度随损失的增大而增大，损失趋于0时则减小，得到的结果往往更加准确。</p>
-<h5 id="MAE-平均绝对值误差"><a href="#MAE-平均绝对值误差" class="headerlink" title="MAE(平均绝对值误差)"></a>MAE(平均绝对值误差)</h5><p>用于回归模型的损失函数，计算预测值与目标值之差的绝对值之和。偏向于数值的中位数，忽视较少的异常点，因此适合把异常点当作受损数据的任务。</p>
+<h5 id="度量学习"><a href="#度量学习" class="headerlink" title="度量学习"></a>度量学习</h5><ol>
+<li>对比损失 将图像通过孪生网络获取特征，然后计算特征之间的距离并带入损失函数。</li>
+<li>三元组损失 输入是anchor,positive(同属一个人),negative(不同属一个人)，三元组损失定义为当类内损失与类间损失的距离大于阈值的时候损失为0。</li>
+<li>改善三元组损失 由于三元组损失没有考虑到约束类内的距离，因此改善三元组损失在前者基础上多了一个类内距离。</li>
+<li>四元组损失 输入四张图像,anchor,positive,negative1,negative2,包含正常的三元组损失(ap&amp;an1)与弱推动的三元组损失(ap&amp;n1n2)。</li>
+<li>难样本挖掘 对batch中的每一张图片，挑选一个最难的正样本和一个最难的负样本构成一个三元组。其中最难的正样本指的是相同ID的图片集中与anchor距离最大的样本；最难的负样本指的是在不同ID的图片中距离最小的样本。<br>PS 上面的anchor在目标检测中一般指的是锚框-固定的参考框。</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/loss.html" data-id="cl2nfif9l0000twu4841h31rb" data-title="Loss" class="article-share-link">Share</a>
+      <a data-url="http://example.com/ReID%E5%9F%BA%E7%A1%80.html" data-id="cl2xeunca0000hsu4a1udb9ts" data-title="ReId" class="article-share-link">Share</a>
       
       
       

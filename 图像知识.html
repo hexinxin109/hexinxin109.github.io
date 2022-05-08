@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Loss | Hexo</title>
+  <title>图像知识 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="损失函数是用来评测模型的预测值和真实值的相似程度。 softmaxsoftmax是组合softmax和cross-entropy loss的损失函数。  softmax：将全连接层通过自然指数操作计算每个值占输出总和值的比例，进而将输出限制在0~1之间，实现概率分类问题。 cross-entropy：分类模型中一般利用交叉熵作为损失函数。计算方式为对预测值（经过softmax计算后的值）求对数并与">
+  <meta name="description" content="法线贴图(Normal Mapping)在物体的凹凸表面的每个点上均作法线，通过RGB颜色通道来标记法线的方向，即法线贴图的RGB分量分别对应于表面法线的X，Y和Z坐标。由于法线分量的范围是[-1,1],RGB分量的范围是[0,1],因此在存储法线分量为RGB图像时，需要对分量做映射，反之需要一个逆变换。法线贴图是可以应用到三维表面的特殊纹理，使得每个平面的各种像素拥有高度值，产生立体视觉效果。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Loss">
-<meta property="og:url" content="http://example.com/loss.html">
+<meta property="og:title" content="图像知识">
+<meta property="og:url" content="http://example.com/%E5%9B%BE%E5%83%8F%E7%9F%A5%E8%AF%86.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="损失函数是用来评测模型的预测值和真实值的相似程度。 softmaxsoftmax是组合softmax和cross-entropy loss的损失函数。  softmax：将全连接层通过自然指数操作计算每个值占输出总和值的比例，进而将输出限制在0~1之间，实现概率分类问题。 cross-entropy：分类模型中一般利用交叉熵作为损失函数。计算方式为对预测值（经过softmax计算后的值）求对数并与">
+<meta property="og:description" content="法线贴图(Normal Mapping)在物体的凹凸表面的每个点上均作法线，通过RGB颜色通道来标记法线的方向，即法线贴图的RGB分量分别对应于表面法线的X，Y和Z坐标。由于法线分量的范围是[-1,1],RGB分量的范围是[0,1],因此在存储法线分量为RGB图像时，需要对分量做映射，反之需要一个逆变换。法线贴图是可以应用到三维表面的特殊纹理，使得每个平面的各种像素拥有高度值，产生立体视觉效果。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-01T14:56:05.743Z">
-<meta property="article:modified_time" content="2022-05-01T14:56:05.743Z">
+<meta property="article:published_time" content="2022-05-08T07:01:27.101Z">
+<meta property="article:modified_time" content="2022-05-08T07:01:27.101Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -75,8 +75,8 @@
       <div class="outer">
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/loss.html" class="article-date">
-  <time class="dt-published" datetime="2022-05-01T14:56:05.743Z" itemprop="datePublished">2022-05-01</time>
+    <a href="/%E5%9B%BE%E5%83%8F%E7%9F%A5%E8%AF%86.html" class="article-date">
+  <time class="dt-published" datetime="2022-05-08T07:01:27.101Z" itemprop="datePublished">2022-05-08</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Loss
+      图像知识
     </h1>
   
 
@@ -95,19 +95,19 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>损失函数是用来评测模型的预测值和真实值的相似程度。</p>
-<h6 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h6><p>softmax是组合softmax和cross-entropy loss的损失函数。</p>
-<ol>
-<li>softmax：将全连接层通过自然指数操作计算每个值占输出总和值的比例，进而将输出限制在0~1之间，实现概率分类问题。</li>
-<li>cross-entropy：分类模型中一般利用交叉熵作为损失函数。计算方式为对预测值（经过softmax计算后的值）求对数并与样本真值求积。</li>
+        <h5 id="法线贴图-Normal-Mapping"><a href="#法线贴图-Normal-Mapping" class="headerlink" title="法线贴图(Normal Mapping)"></a>法线贴图(Normal Mapping)</h5><p>在物体的凹凸表面的每个点上均作法线，通过RGB颜色通道来标记法线的方向，即法线贴图的RGB分量分别对应于表面法线的X，Y和Z坐标。由于法线分量的范围是[-1,1],RGB分量的范围是[0,1],因此在存储法线分量为RGB图像时，需要对分量做映射，反之需要一个逆变换。法线贴图是可以应用到三维表面的特殊纹理，使得每个平面的各种像素拥有高度值，产生立体视觉效果。</p>
+<h5 id="反照率贴图-Albedo-Mapping"><a href="#反照率贴图-Albedo-Mapping" class="headerlink" title="反照率贴图(Albedo Mapping)"></a>反照率贴图(Albedo Mapping)</h5><h5 id="高频信息-amp-低频信息"><a href="#高频信息-amp-低频信息" class="headerlink" title="高频信息 &amp; 低频信息"></a>高频信息 &amp; 低频信息</h5><p>图像的频率指的是灰度变化的剧烈程度，是灰度在平面空间上的梯度。低频是指灰度缓慢地变化，可以想象成一块连续渐变的区域（沙漠）；高频即相邻区域之间灰度变化相差很大，比如图像中前景与背景的交接部分，噪声点。</p>
+<h5 id="像素值-amp-灰度值"><a href="#像素值-amp-灰度值" class="headerlink" title="像素值 &amp; 灰度值"></a>像素值 &amp; 灰度值</h5><ol>
+<li>色彩深度 在图像学领域表示在位图或者视频缓冲区中存储一个像素的颜色所用的位数，因此位数越多，其所能表示的颜色也越多。</li>
+<li>像素点 最小的图像单元。像素点矩阵对应三个颜色向量矩阵：R，G，B。</li>
+<li>灰度值 表示图像明暗程度的数值，即黑白图像中的颜色深度。</li>
+<li>图像灰度化 灰度表示RGB颜色分量全部相等，即RGB(25,25,25)的灰度值为25。</li>
 </ol>
-<h5 id="MSE-均方误差"><a href="#MSE-均方误差" class="headerlink" title="MSE(均方误差)"></a>MSE(均方误差)</h5><p>最常见的回归损失函数，计算预测值与真实值之间距离的平方和。偏向于数值的平均数，偏向于便宜较大的异常点，因此适合异常检测的任务。优势是损失的梯度随损失的增大而增大，损失趋于0时则减小，得到的结果往往更加准确。</p>
-<h5 id="MAE-平均绝对值误差"><a href="#MAE-平均绝对值误差" class="headerlink" title="MAE(平均绝对值误差)"></a>MAE(平均绝对值误差)</h5><p>用于回归模型的损失函数，计算预测值与目标值之差的绝对值之和。偏向于数值的中位数，忽视较少的异常点，因此适合把异常点当作受损数据的任务。</p>
-
+<h5 id="图像的奇异值分解"><a href="#图像的奇异值分解" class="headerlink" title="图像的奇异值分解"></a>图像的奇异值分解</h5>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/loss.html" data-id="cl2nfif9l0000twu4841h31rb" data-title="Loss" class="article-share-link">Share</a>
+      <a data-url="http://example.com/%E5%9B%BE%E5%83%8F%E7%9F%A5%E8%AF%86.html" data-id="cl2xeuncp0002hsu438y46wmd" data-title="图像知识" class="article-share-link">Share</a>
       
       
       
