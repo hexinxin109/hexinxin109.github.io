@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>backbone | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="预备知识 输入是一个vector，输出是scalar&#x2F;class(回归问题&#x2F;分类问题)； 输入是 vector set(文字)，输出是每个向量对应一个标签(POS tagging-词性标注)、单个标签(sentiment analysis-句子正面&#x2F;负面)、自适应标签数量(seq2seq,比如翻译)；  InceptionTransformer抛弃了传统的CNN和RNN，网络结构完全由attent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="backbone">
+<meta property="og:url" content="http://example.com/2022/04/29/backbone/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="预备知识 输入是一个vector，输出是scalar&#x2F;class(回归问题&#x2F;分类问题)； 输入是 vector set(文字)，输出是每个向量对应一个标签(POS tagging-词性标注)、单个标签(sentiment analysis-句子正面&#x2F;负面)、自适应标签数量(seq2seq,比如翻译)；  InceptionTransformer抛弃了传统的CNN和RNN，网络结构完全由attent">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-29T15:23:54.751Z">
+<meta property="article:modified_time" content="2022-05-09T15:24:24.550Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-backbone" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/29/backbone/" class="article-date">
+  <time class="dt-published" datetime="2022-04-29T15:23:54.751Z" itemprop="datePublished">2022-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      backbone
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h4><ol>
+<li>输入是一个vector，输出是scalar/class(回归问题/分类问题)；</li>
+<li>输入是 vector set(文字)，输出是每个向量对应一个标签(POS tagging-词性标注)、单个标签(sentiment analysis-句子正面/负面)、自适应标签数量(seq2seq,比如翻译)；</li>
+</ol>
+<h5 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h5><h5 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h5><p>抛弃了传统的CNN和RNN，网络结构完全由attention组成。具体的说，是由self-attention和前馈神经网络组成。<br>输入是sequence，输出是sequence。<br><strong>Encoder：</strong></p>
+<ol>
+<li>网络架构内部用到了self attention，但该架构补充了residual的思路，即对于输入Ii，通过self attention得到对应的输出Oi，然后将Oi与Ii叠加后继续传递。</li>
+<li>对Oi+Ii进行layer Norm，即单个sample利用自身的均值和方差进行归一化。这与BN不同，BN是将不同的sample在同一个通道上进行归一化。</li>
+<li>归一化后的值进入FC(feed forward)层并与前面的输入进行残差叠加，并进行归一化layer norm处理得到输出。注意1-3对应transformer中的一个block。<br><strong>Decoder：</strong></li>
+<li>AT：每个阶段的输入其实是上一阶段的输出。利用masked self attention来确保参考的信息不能考虑后面的部分(因为后面并没有计算出对应的输出)，因此只考虑前面的部分(包含前面的输入与输出)。</li>
+<li>NAT：并行输出，直接对于所有输入推理出对应的输出。(可以控制输出的长度)效果比AT差，存在multi-modality问题。</li>
+<li>cross attention：将encoder的输出作为k，decoder前面的输出作为q，计算出对应的attention matrix，继而得出目标输出O，并将目标输出再次放入masked self attention(即使用的是AT部分的decoder思想)。<br>实际上，self attention可以认为是transformer中正式出现的，因此cross attention先于self attention出现。<br><strong>Training：</strong></li>
+<li>teacher forcing：训练的时候将ground truth作为decoder的输入去引导网络生成对应正确的答案。</li>
+<li>mismatch(exposure bias)-&gt;scheduled sampling 由于decoder的训练阶段输入都是正确的向量，在测试时decoder可能会收到错误的向量，这个gap可以通过在训练阶段将部分输入改成错误的训练来让网络更加可用。<br>训练时常用的tip：<br>(1) copy mechanism(chat-bot) Q：你好，我是XXX A：XXX你好！<br>(2) summarization</li>
+</ol>
+<h5 id="NeRF"><a href="#NeRF" class="headerlink" title="NeRF"></a>NeRF</h5><p>在于非显式地(MLP)将一个复杂的静态场景用一个神经网络来建模，训练之后，从任意角度渲染出真实的场景图片。需要提供一个静态场景和大量相机参数已知的图片。</p>
+<h5 id="Meta-learning"><a href="#Meta-learning" class="headerlink" title="Meta learning"></a>Meta learning</h5><h5 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h5><h5 id="fastText-amp-word2vec"><a href="#fastText-amp-word2vec" class="headerlink" title="fastText &amp; word2vec"></a>fastText &amp; word2vec</h5><h5 id="CNN-amp-RNN-amp-前馈神经网络"><a href="#CNN-amp-RNN-amp-前馈神经网络" class="headerlink" title="CNN &amp; RNN &amp; 前馈神经网络"></a>CNN &amp; RNN &amp; 前馈神经网络</h5><h5 id="LSTM-amp-GRU"><a href="#LSTM-amp-GRU" class="headerlink" title="LSTM &amp; GRU"></a>LSTM &amp; GRU</h5><h5 id="VAE"><a href="#VAE" class="headerlink" title="VAE"></a>VAE</h5><h5 id="attention-amp-self-attention"><a href="#attention-amp-self-attention" class="headerlink" title="attention &amp; self-attention"></a>attention &amp; self-attention</h5><ol>
+<li>attention(注意力机制)。<br>核心逻辑就是从关注全部到关注重点，类似于人类的注意力：将有限的注意力集中在重点信息上，从而节省资源、快速获得最有效的信息。模型复杂度小（参数少）；可以并行处理（速度快）；挑重点记忆长距离信息（效果好）。<br>原理分解：利用query(?)和key(?)进行相似度计算，得到权值；权值归一化得到可用的权重；权重与value进行加权求和。</li>
+<li>N种类型<br><strong>soft &amp; hard &amp; local:</strong> 主要区别体现在计算区域上，soft是对所有的key求权重概率再进行加权，是一种全局的计算方式；hard是针对某个key进行计算，这种方式不可导且对对齐要求极高；local是在前两者的基础上进行折中，即先通过hard定位到某个位置，再以此为中心取一个窗口区域进行attention计算。<br><strong>单层 &amp; 多层 &amp; 多头：</strong> 主要区别在结构上是否划分层次关系，单层是指用一个query对内容进行一次attention；多层是指具有层次关系的模型，以文本为例：先对每个句子使用attention计算出一个句向量，再对所有句向量通过attention计算出一个文档向量，最后利用文档向量去进一步计算任务；多头是指用多个query对内容进行多次attention，每个query关注的是不同的部分，最后进行结果拼接。<br><strong>静态 attention：</strong><br><strong>动态 attention：</strong><br><strong>self attention：</strong> 可以理解成对于多个输入，考虑所有输入向量之间的相关性并对对应的向量做出判断。</li>
+<li>计算向量之间的相关性(attention分数)<br>(1) dot-product：对于两个向量A&amp;B，先对其分别乘以一个矩阵Wa&amp;Wb，得到目标向量q&amp;k。接下来，对目标向量逐点相乘并最后累加得到α(表示A&amp;B之间的相关性)。<br>(2) additive：对于两个向量A&amp;B，先对其分别乘以一个矩阵Wa&amp;Wb，得到目标向量q&amp;k。接下来，对目标向量进行横向拼接并通过tanh将其投影到-1~1之间，最终与W矩阵相乘得到α。</li>
+<li>完整计算流程<br>(1) 需要学习的参数：Wq,Wk,Wv；<br>(2) 对于输入I1,I2…In，利用W参数分别计算出对应的(q1,k1,v1),(q2,k2,v2)…；<br>(3) 计算K的转置与Q的乘积，并进一步通过softmax等激活函数进行处理，得到attention matrix；<br>(4) 将attention matrix乘以对应的v，得到与Ii对应的输出Oi；<br><strong>Multi-head self-attention：</strong><br>考虑到相关性可能有不同的层面，这仅用一个q是无法全部涵盖的，因此让不同的q去负责不同种类的相关性；具体实现类似于self attention，只需要在对应的q1,k1,v1的基础上根据head数量n，提供n个矩阵进一步得到q11,q12,..q1n,k11,k12,..k1n,..。最终利用矩阵将不同head的结果进行合并得到对应的输出Oi；<br><strong>Positional Encoding：</strong></li>
+<li>hand-crafted：每个位置有一个独特的位置向量ei，并将其更新到输入ai中，即ai+ei，然后进一步计算q,k,v；<br><strong>Truncated self-attention：</strong><br><strong>self attention vs CNN</strong> CNN是前者的特例，从感受野角度来看，前者更像是自己决定当前像素与哪些像素相关，后者是有人为指定的卷积核所限定；因此理论上数据量比较大的时候self attention会取得更好的结果，而CNN对于数据量的需求比较小，因此少量数据下CNN容易达到不错的效果，而前者容易overfitting。<br><strong>self attention vs RNN</strong> RNN无法并行化处理，需要顺序考虑不同的输入；同时若要考虑距离较远的输入，需要一直存储在memory中并向后传递。相比较而言，self attention可以并行处理每一个输入，同时可以更容易地考虑到不同地其他输入。</li>
+</ol>
+<p><strong>表示方式：</strong></p>
+<ol>
+<li>one-hot encoding：计算出所有词汇的数量N，开一个长度为N的向量并在指定单词位置处赋值为1，其余处为0。(缺陷：词汇之间的相关性没有得到体现，比如苹果&amp;水果，苹果&amp;动物)</li>
+<li>word embedding：有关联的词汇分布更为相近，每个单词表示为一排长度不一的向量；</li>
+</ol>
+<h5 id="人工神经网络"><a href="#人工神经网络" class="headerlink" title="人工神经网络"></a>人工神经网络</h5><h5 id="ResNet-amp-Residual-block"><a href="#ResNet-amp-Residual-block" class="headerlink" title="ResNet &amp; Residual block"></a>ResNet &amp; Residual block</h5><p>考虑到深层的神经网络训练困难，存在梯度消失和梯度爆炸的问题。跳跃连接可以从某一层网络层获取激活后的值并插入到后续更深层，具体的插入位置是线性激活之后，ReLU激活之前（这里的线性激活是卷积操作吗）。</p>
+<h5 id="孪生网络"><a href="#孪生网络" class="headerlink" title="孪生网络"></a>孪生网络</h5><p>由共享权值的神经网络组成，其中共享权值的神经网络可以是不同的神经网络(比如lstm与cnn)，被称为伪孪生神经网络。主要用于计算两个输入的相似度，通过将输入映射到新的空间进行表示，然后基于该表示计算输入的相似度。</p>
+<ol>
+<li>孪生神经网络 适合用于处理输入比较类似的情况，比如计算两个句子或者两个词汇的语义相似度；</li>
+<li>伪孪生神经网络 适合处理输入有一定差别的情况，比如验证标题与正文的表述是否一致，文字和图片的描述是否一致；</li>
+</ol>
+<h5 id="SVM算法"><a href="#SVM算法" class="headerlink" title="SVM算法"></a>SVM算法</h5><p>任务是使得最优分割面（超平面）能让距离它最近的点具有更大的间距。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/29/backbone/" data-id="cl2yvlv4b00015su40ycwfs4e" data-title="backbone" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/30/activation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Activation Funtion
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/29/git/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/30/activation/">Activation Funtion</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/29/backbone/">backbone</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/29/git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/22/yolo/">YOLO</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/20/network/">Networks</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
